@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Friendship Cards</title>
+<style>
+  body {
+    font-family: 'Playfair Display', serif;
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+    flex-direction: column;
+    transition: opacity 0.4s ease;
+  }
+  .card {
+    width: 90%;
+    max-width: 400px;
+    border: 1px solid #000;
+    border-radius: 20px;
+    padding: 40px 20px;
+    font-size: 1.1rem;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    min-height: 180px;
+  }
+  .buttons {
+    margin-top: 25px;
+  }
+  button {
+    background: none;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-family: 'Playfair Display', serif;
+    cursor: pointer;
+    margin: 0 8px;
+    transition: background 0.3s ease;
+  }
+  button:hover {
+    background: #f4f4f4;
+  }
+</style>
+</head>
+<body>
+  <div class="card" id="card">Welcome to <i>Friendship Talks</i> — tap next to begin.</div>
+  <div class="buttons">
+    <button onclick="prevCard()">← Prev</button>
+    <button onclick="shuffleCards()">Shuffle</button>
+    <button onclick="nextCard()">Next →</button>
+  </div>
+
+<script>
+const cards = [
+"Welcome to Friendship Talks — tap next to begin.",
+"What made us click as friends in the first place?",
+"What’s one memory with me that still makes you laugh?",
+"When did you first realize you could trust me?",
+"What do you think makes a friendship last?",
+"What’s one small thing that reminds you of our friendship?",
+"How do you show appreciation to your friends?",
+"What’s one thing you admire about me but never said?",
+"When was the last time we were really silly together?",
+"What’s one inside joke that never gets old?",
+"What’s something we used to do that you miss?",
+"How would you describe our friendship in three words?",
+"What do you think makes a true friend?",
+"What’s one thing you’ve learned from our friendship?",
+"When was the last time you felt really supported by someone?",
+"What’s something about friendship that people often get wrong?",
+"What’s one way you want us to grow as friends?",
+"What’s a funny or embarrassing story we’ll never forget?",
+"How do you handle fights or misunderstandings between friends?",
+"What kind of friend are you when someone’s sad?",
+"What’s your favorite thing to do with your closest friends?",
+"What’s something you’ve always wanted to tell me but didn’t know how?",
+"What makes you feel valued as a friend?",
+"What’s one of your favorite friendship traditions?",
+"What’s one thing you wish we could do together soon?",
+"When do you feel most connected to your friends?",
+"What’s a friendship that changed you forever?",
+"How do you know when a friendship is real?",
+"What do you think keeps friendships strong over time?",
+"What’s one thing that always makes you think of me?",
+"How do you like to spend quiet time with friends?",
+"What’s the best piece of advice a friend has ever given you?",
+"What makes you feel safe around your friends?",
+"Have you ever lost a friend you thought would stay forever?",
+"What’s something you appreciate about our friendship?",
+"What’s one dream or goal you want your friends to support?",
+"What’s your love language — but in friendship?",
+"What’s a moment that made you proud of our friendship?",
+"What’s one way you want to be a better friend?",
+"What’s something that instantly cheers you up?",
+"What’s a memory that sums up our friendship perfectly?",
+"How do you comfort your friends when they’re hurting?",
+"What kind of friend were you in childhood?",
+"What’s something you’ve learned from a broken friendship?",
+"What’s one thing you hope we’re still doing 10 years from now?",
+"What do you think makes friendship different from love?",
+"What’s one song that reminds you of friendship?",
+"What’s your favorite part about growing up with friends?",
+"What’s something you’d never get tired of doing with me?",
+"What’s a lesson friendship has taught you about life?",
+"What’s one word that describes what friendship means to you?"
+];
+
+let current = 0;
+const card = document.getElementById('card');
+
+function showCard(index) {
+  document.body.style.opacity = 0;
+  setTimeout(() => {
+    card.textContent = cards[index];
+    document.body.style.opacity = 1;
+  }, 250);
+}
+
+function nextCard() {
+  current = (current + 1) % cards.length;
+  showCard(current);
+}
+
+function prevCard() {
+  current = (current - 1 + cards.length) % cards.length;
+  showCard(current);
+}
+
+function shuffleCards() {
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+  current = 0;
+  showCard(current);
+}
+</script>
+</body>
+</html>
